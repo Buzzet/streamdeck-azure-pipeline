@@ -1,0 +1,41 @@
+{
+  "Actions": [
+    {
+      "Icon": "actionIcon",
+      "Name": "ShellyControll",
+      "States": [
+        {
+          "Image": "keyIcon"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "This actions toggles on and off the shelly 1",
+      "UUID": "com.buzzet.shelly.action"
+    }
+  ],
+  "SDKVersion": 2,
+  "Category": "Buzzet",
+  "CategoryIcon": "categoryIcon",
+  "Author": "Jannik Reinefeld",
+  "CodePath": "index.html",
+  "Description": "This action toggles on and off the shelly 1",
+  "Name": "Shelly Toggle",
+  "Icon": "keyIcon",
+  "URL": "https://www.elgato.com/gaming/stream-deck",
+  "PropertyInspectorPath": "shellyControll.html",
+  "Version": "1.0",
+  "OS": [
+    {
+      "Platform": "mac",
+      "MinimumVersion": "10.11"
+    },
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "Software": 
+    {
+        "MinimumVersion" : "4.1"
+    }
+}

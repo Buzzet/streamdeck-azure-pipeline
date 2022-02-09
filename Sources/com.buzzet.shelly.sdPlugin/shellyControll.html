@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>com.buzzet.shellyControll PI</title>
+    <link rel="stylesheet" href="sdpi.css">
+    <script src="common.js"></script>
+</head>
+
+<body>
+    <div class="sdpi-wrapper">
+        <div type="field" class="sdpi-item">
+            <div class="sdpi-item-label">Local IP-Address</div>
+            <div class="sdpi-item-value field">
+                <input id="ipField" oninput="sendValueToPlugin(event.target.value, 'setIP')">
+            </div>
+        </div>
+        <div class="sdpi-item-details">Shellys address in your private network</div>
+    </div>
+
+    <script>
+        var pluginAction = null,
+            uuid = '',
+            aValueSlider = document.querySelectorAll('.setvalueSlider'),
+            oValueSelector = document.querySelector(".setvalueSelect");
+
+        if ($SD) {
+            $SD.on('connected', function (jsonObj) {
+                uuid = jsonObj['uuid'];
+                if (jsonObj.hasOwnProperty('actionInfo')) {
+                    pluginAction = jsonObj.actionInfo['action'];
+                }
+                settings = jsonObj.actionInfo.payload.settings;
+                document.getElementById('ipField').value = settings.IP || ''
+            });
+        };
+
+
+        function sendValueToPlugin(value, param) {
+            if ($SD && $SD.connection) {
+                var payload = {};
+                if (param) {
+                    payload[param] = value;
+                }
+                $SD.api.sendToPlugin(uuid, pluginAction, payload);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

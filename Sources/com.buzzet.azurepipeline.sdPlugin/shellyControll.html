@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>com.buzzet.AzurePipeline PI</title>
+    <link rel="stylesheet" href="sdpi.css">
+    <script src="common.js"></script>
+</head>
+
+<body>
+    <div class="sdpi-wrapper">
+        <div type="field" class="sdpi-item">
+            <div class="sdpi-item-label">Company</div>
+            <div class="sdpi-item-value field">
+                <input id="companyField" oninput="sendValueToPlugin(event.target.value, 'setCompany')">
+            </div>
+        </div>
+        <div type="field" class="sdpi-item">
+            <div class="sdpi-item-label">Project</div>
+            <div class="sdpi-item-value field">
+                <input id="projectField" oninput="sendValueToPlugin(event.target.value, 'setProject')">
+            </div>
+        </div>
+        <div type="field" class="sdpi-item">
+            <div class="sdpi-item-label">AccessToken</div>
+            <div class="sdpi-item-value field">
+                <input id="accessTokenField" oninput="sendValueToPlugin(event.target.value, 'setAccessToken')">
+            </div>
+        </div>
+        <div type="field" class="sdpi-item">
+            <div class="sdpi-item-label">Pipeline Id</div>
+            <div class="sdpi-item-value field">
+                <input id="pipelineIdField" oninput="sendValueToPlugin(event.target.value, 'setPipelineId')">
+            </div>
+        </div>
+        <div type="field" class="sdpi-item">
+            <div class="sdpi-item-label">Run Index</div>
+            <div class="sdpi-item-value field">
+                <input id="runIndex" oninput="sendValueToPlugin(event.target.value, 'setRunIndex')">
+            </div>
+                <p>Starting by 0</p>
+        </div>
+    </div>
+
+    <script>
+        var pluginAction = null,
+            uuid = '',
+            aValueSlider = document.querySelectorAll('.setvalueSlider'),
+            oValueSelector = document.querySelector(".setvalueSelect");
+
+        if ($SD) {
+            $SD.on('connected', function (jsonObj) {
+                uuid = jsonObj['uuid'];
+                if (jsonObj.hasOwnProperty('actionInfo')) {
+                    pluginAction = jsonObj.actionInfo['action'];
+                }
+                settings = jsonObj.actionInfo.payload.settings;
+                document.getElementById('companyField').value = settings.company || ''
+                document.getElementById('projectField').value = settings.project || ''
+                document.getElementById('accessTokenField').value = settings.accessToken || ''
+                document.getElementById('branchField').value = settings.branch || ''
+                document.getElementById('pipelineIdField').value = settings.pipelineId || ''
+                document.getElementById('runIndex').value = settings.runIndex || ''
+            });
+        };
+
+
+        function sendValueToPlugin(value, param) {
+            if ($SD && $SD.connection) {
+                var payload = {};
+                if (param) {
+                    payload[param] = value;
+                }
+                $SD.api.sendToPlugin(uuid, pluginAction, payload);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

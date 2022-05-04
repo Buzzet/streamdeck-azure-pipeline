@@ -2,15 +2,15 @@
   "Actions": [
     {
       "Icon": "actionIcon",
-      "Name": "ShellyControll",
+      "Name": "AzurePipeline",
       "States": [
         {
           "Image": "keyIcon"
         }
       ],
       "SupportedInMultiActions": false,
-      "Tooltip": "This actions toggles on and off the shelly 1",
-      "UUID": "com.buzzet.shelly.action"
+      "Tooltip": "Shows the status of the azure pipeline",
+      "UUID": "com.buzzet.azurepipeline.action"
     }
   ],
   "SDKVersion": 2,
@@ -18,10 +18,10 @@
   "CategoryIcon": "categoryIcon",
   "Author": "Jannik Reinefeld",
   "CodePath": "index.html",
-  "Description": "This action toggles on and off the shelly 1",
-  "Name": "Shelly Toggle",
+  "Description": "This Plugin can be used to show the status of the azure pipeline",
+  "Name": "Azure Pipeline",
   "Icon": "keyIcon",
-  "URL": "https://github.com/Buzzet/streamdeck-shellytoggle",
+  "URL": "https://github.com/Buzzet/streamdeck-azure-pipeline",
   "PropertyInspectorPath": "shellyControll.html",
   "Version": "1.0",
   "OS": [

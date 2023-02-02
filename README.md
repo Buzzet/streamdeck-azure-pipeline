@@ -1,12 +1,27 @@
 
-`ShellyToggle` is a simple Plugin to controll Shelly 1
+`AzurePipeline` is a simple Plugin to view your current Pipeline runs
 
 
 # Description
 
-`ShellyToggle` is a plugin that displays the current status of your shelly and can simpley turn it off and on. 
+`AzurePipeline` is a plugin that displays the current status of your Azure Pipeline.
+You can see your pipeline running, succeed or fail.
 
-This product was not developt or approved by Shelly
+You can also click on the button which brings you right to the Pipeline.
+
+This product was not developed or approved by Azure
+
+# Properties
+
+You have to set the following properties
+
+ - Company Name
+ - Project
+ - Access Token (with the following rights)
+   - Build(Read)
+   - Release(Read)
+ - Pipeline ID (get it from the URL, called definitionId)
+ - run Index -> starting at 0 für the current run up to 30 for the 30th run
 
 # Features
 
@@ -19,7 +34,7 @@ This product was not developt or approved by Shelly
 
 # Installation
 
-In the Release folder, you can find the file `com.buzzet.shelly.streamDeckPlugin`. If you double-click this file on your machine, Stream Deck will install the plugin.
+In the Release folder, you can find the file `com.buzzet.azurepipeline.streamDeckPlugin`. If you double-click this file on your machine, Stream Deck will install the plugin.
 
 
 # Source code

@@ -25,13 +25,18 @@
 			onKeyUp: function (context, settings, coordinates, userDesiredState) {
 				var company = "";
 				var project = "";
+				var pipelineId = "";
+				
 			    if (settings != null && settings.hasOwnProperty('company')) {
 					company = settings["company"];
 				}
 				if (settings != null && settings.hasOwnProperty('project')) {
 					project = settings["project"];
 				}
-				this.OpenUrl("https://dev.azure.com/" + company + "/" + project + "/_build")	
+				if (settings != null && settings.hasOwnProperty('pipelineId')) {
+					pipelineId = settings["pipelineId"];
+				}
+				this.OpenUrl("https://dev.azure.com/" + company + "/" + project + "/_build?definitionId=" + pipelineId)	
 			},
 
 			onWillAppear: async function (context, settings, coordinates) {

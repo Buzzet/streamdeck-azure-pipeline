@@ -17,6 +17,12 @@
             </div>
         </div>
         <div type="field" class="sdpi-item">
+            <div class="sdpi-item-label">Custom URL</div>
+            <div class="sdpi-item-value field">
+                <input id="customURLField" oninput="sendValueToPlugin(event.target.value, 'setCustomURL')">
+            </div>
+        </div>
+        <div type="field" class="sdpi-item">
             <div class="sdpi-item-label">Project</div>
             <div class="sdpi-item-value field">
                 <input id="projectField" oninput="sendValueToPlugin(event.target.value, 'setProject')">
@@ -57,6 +63,7 @@
                 }
                 settings = jsonObj.actionInfo.payload.settings;
                 document.getElementById('companyField').value = settings.company || ''
+                document.getElementById('customURLField').value = settings.customURL || ''
                 document.getElementById('projectField').value = settings.project || ''
                 document.getElementById('accessTokenField').value = settings.accessToken || ''
                 document.getElementById('pipelineIdField').value = settings.pipelineId || ''
@@ -74,7 +81,6 @@
                 $SD.api.sendToPlugin(uuid, pluginAction, payload);
             }
         }
-
     </script>
 
 </body>

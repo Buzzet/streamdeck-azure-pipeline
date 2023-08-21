@@ -26,9 +26,13 @@
 				var company = "";
 				var project = "";
 				var pipelineId = "";
-				
-			    if (settings != null && settings.hasOwnProperty('company')) {
+				var customURL = "https://dev.azure.com/";
+
+				if (settings != null && settings.hasOwnProperty('company')) {
 					company = settings["company"];
+				}
+				if (settings != null && settings.hasOwnProperty('customURL')) {
+					customURL = settings["customURL"];
 				}
 				if (settings != null && settings.hasOwnProperty('project')) {
 					project = settings["project"];
@@ -36,13 +40,14 @@
 				if (settings != null && settings.hasOwnProperty('pipelineId')) {
 					pipelineId = settings["pipelineId"];
 				}
-				this.OpenUrl("https://dev.azure.com/" + company + "/" + project + "/_build?definitionId=" + pipelineId)	
+				this.OpenUrl(customURL + company + "/" + project + "/_build?definitionId=" + pipelineId)	
 			},
 
 			onWillAppear: async function (context, settings, coordinates) {
 				console.log(settings)
 				var company = "";
 				var project = "";
+				var customURL = "https://dev.azure.com/";
 				// var repo = "";
 				var pipelineId = ""
 				var index = 0
@@ -55,6 +60,9 @@
 				}
 				if (settings != null && settings.hasOwnProperty('project')) {
 					project = settings["project"];
+				}
+				if (settings != null && settings.hasOwnProperty('customURL')) {
+					customURL = settings["customURL"];
 				}
 				// if (settings != null && settings.hasOwnProperty('repo')) {
 				// 	repo = settings["repo"];
@@ -76,11 +84,11 @@
 				}
 				headers.append('Authorization', 'Basic' + btoa("abc" + ":" + accessToken))
 				console.log(settings)
-				console.log(company, project, pipelineId, index)
+				console.log(company, customURL, project, pipelineId, index)
 				while (true) {
 
 
-					fetch("http://dev.azure.com/" + company + "/" + project + "/_apis/pipelines/" + pipelineId + "/runs?api-version=6.0-preview.1", { method: 'GET', headers: headers }).then((response) => {
+					fetch(customURL + company + "/" + project + "/_apis/pipelines/" + pipelineId + "/runs?api-version=6.0-preview.1", { method: 'GET', headers: headers }).then((response) => {
 						return response.json()
 					}).then((data) => {
 						let value = data.value;
@@ -215,6 +223,11 @@
 
 						var newValue = jsonPayload.setCompany;
 						settingsCache['company'] = newValue
+					}
+					if (jsonPayload.hasOwnProperty('setCustomURL')) {
+
+						var newValue = jsonPayload.setCustomURL;
+						settingsCache['customURL'] = newValue
 					}
 					if (jsonPayload.hasOwnProperty('setProject')) {
 

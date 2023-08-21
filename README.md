@@ -1,6 +1,4 @@
-
 `AzurePipeline` is a simple Plugin to view your current Pipeline runs
-
 
 # Description
 
@@ -15,13 +13,14 @@ This product was not developed or approved by Azure
 
 You have to set the following properties
 
- - Company Name
- - Project
- - Access Token (with the following rights)
-   - Build(Read)
-   - Release(Read)
- - Pipeline ID (get it from the URL, called definitionId)
- - run Index -> starting at 0 für the current run up to 30 for the 30th run
+- Company Name
+- Custom URL (optional, default is "https://dev.azure.com/")
+- Project
+- Access Token (with the following rights)
+  - Build(Read)
+  - Release(Read)
+- Pipeline ID (get it from the URL, called definitionId)
+- run Index -> starting at 0 für the current run up to 30 for the 30th run
 
 # Features
 
@@ -31,11 +30,9 @@ You have to set the following properties
 
 ![](screenshot.png)
 
-
 # Installation
 
 In the Release folder, you can find the file `com.buzzet.azurepipeline.streamDeckPlugin`. If you double-click this file on your machine, Stream Deck will install the plugin.
-
 
 # Source code
 
